@@ -35,7 +35,7 @@ class UserService {
   async createUser(req, res) {
     try {
       const newUserData = req.body;
-      const newUser = await userRepository(newUserData);
+      const newUser = await userRepository.create(newUserData);
       if (newUser) {
         res
           .status(200)
@@ -52,7 +52,7 @@ class UserService {
     try {
       const userId = req.params.id;
       const dataToUpdate = req.body;
-      const updatedUser = await userRepository.updateUser(userId, dataToUpdate);
+      const updatedUser = await userRepository.update(userId, dataToUpdate);
 
       if (updatedUser) {
         res.status(200).json({ user: updatedUser });
